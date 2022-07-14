@@ -13,6 +13,9 @@ class TagsInput:
             '.subjects-auto-complete__option'
         ).element_by(have.text(autocomplete or from_)).click()
 
+    def autocomplete(self, from_: str):
+        self.element.type(from_).press_tab()
+
 
 class DropDown:
     def __init__(self, element: Element):
@@ -40,10 +43,12 @@ class DatePicker:
     def select_year(self, option: int):
         self.element.click()
         browser.element('.react-datepicker__year-select').element(f'[value="{option}"]').click()
+        return self
 
     def select_month(self, option: int):
         browser.element('.react-datepicker__month-select').element(f'[value="{option}"]').click()
+        return self
 
     def select_day(self, option: int):
         browser.element(f'.react-datepicker__day--00{option}').click()
-
+        return self
