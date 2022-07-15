@@ -3,9 +3,16 @@ from selene.core.entity import Element
 from selene.support.shared import browser
 from typing import Optional
 
+
 class TagsInput:
     def __init__(self, element: Element):
         self.element = element
+        self.container = self.element.element(
+            './ancestor::*[contains(@id, "Wrapper")]'
+        )
+        self.value_labels = self.container.all(
+            '[class*=-auto-complete__multi-value__label]'
+        )
 
     def add(self, from_: str, autocomplete: Optional[str] = None):
         self.element.type(from_)
@@ -15,6 +22,9 @@ class TagsInput:
 
     def autocomplete(self, from_: str):
         self.element.type(from_).press_tab()
+
+    def should_have_texts(self, *values):
+        self.value_labels.should(have.exact_texts(*values))
 
 
 class DropDown:
@@ -33,22 +43,24 @@ class DropDown:
 
 
 class DatePicker:
-    def __init__(self, element: Element):
-        self.element = element
-
+    def __init__(self, year, month, day):
+        self.date_of_birth = browser.element('#dateOfBirthInput')
+        self.year = year
+        self.month = month
+        self.day = day
 
     def add_data(self, option: str):
-        self.element.perform(command.js.set_value(option)).press_tab()
+        self.date_of_birth.perform(command.js.set_value(option)).press_tab()
 
-    def select_year(self, option: int):
-        self.element.click()
-        browser.element('.react-datepicker__year-select').element(f'[value="{option}"]').click()
+    def select_year(self):
+        self.date_of_birth.click()
+        browser.element('.react-datepicker__year-select').element(f'[value="{self.year}"]').click()
         return self
 
-    def select_month(self, option: int):
-        browser.element('.react-datepicker__month-select').element(f'[value="{option}"]').click()
+    def select_month(self):
+        browser.element('.react-datepicker__month-select').element(f'[value="{self.month}"]').click()
         return self
 
-    def select_day(self, option: int):
-        browser.element(f'.react-datepicker__day--00{option}').click()
+    def select_day(self):
+        browser.element(f'.react-datepicker__day--00{self.day}').click()
         return self
