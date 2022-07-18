@@ -1,28 +1,23 @@
 from helpers.controls import *
 from helpers.helper import *
-from helpers.steps.app_manager import app
+from helpers.steps.app_manager import app, form
 
 
-def test_fill_registrarion_form():
+def test_fill_registration_form():
     browser.open("/automation-practice-form")
     remove_elements_on_page()
 
-    (app.student_form
-     .fill_form("John", "Doe", "johndoe@gmail.com", "1337228148", 'Hindi', 'English')
-     .set_birthday()
+    form.steps_fill_form.fill_form("John", "Doe", "johndoe@gmail.com", "1337228148", 'Hindi', 'English')
+
+    (app.page_student_form
+     .set_birthday(1998, 6, 3)
      .set_checkbox("Music")
      .set_picture("test.png")
      .set_address("bla-bla")
-     )
-
-    browser.element("#state").scroll_to()
-
-    (app.student_form
      .set_state("NCR")
      .set_city("Noida")
      .submit()
      )
-
 
     #assertions
     browser.all("//tr/*[last()]").should(have.exact_texts('Values', 'John Doe',

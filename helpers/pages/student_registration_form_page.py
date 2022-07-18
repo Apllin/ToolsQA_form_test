@@ -39,7 +39,7 @@ class StudentRegistrationForm:
 
     def submit(self):
         self.submit_button.press_enter()
-        #perform(command.js.click)
+        # perform(command.js.click)
         return self
 
     def set_radiobutton(self):
@@ -50,19 +50,12 @@ class StudentRegistrationForm:
         self.subjects.should_have_texts(*names)
         return self
 
-    def fill_form(self, first_name, last_name, email, number, *values):
-        (
-            self.set_first_name(first_name)
-            .set_last_name(last_name)
-            .set_user_email(email)
-            .set_user_number(number)
-            .set_radiobutton()
-            .add_subjects(*values)
-         )
-        return self
+    # def set_birthday(self):
+    #     DatePicker(1998, 6, 3).select_year().select_month().select_day()
+    #     return self
 
-    def set_birthday(self):
-        DatePicker(1998, 6, 3).select_year().select_month().select_day()
+    def set_birthday(self, year, month, day):
+        DatePicker().select_year(year).select_month(month).select_day(day)
         return self
 
     def set_checkbox(self, value: str):

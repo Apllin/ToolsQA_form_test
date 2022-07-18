@@ -29,7 +29,7 @@ class TagsInput:
 
 class DropDown:
     def __init__(self, element: Element):
-        self.element = element
+        self.element = element.perform(command.js.scroll_into_view)
 
     def add(self, from_: Optional[str] = None, autocomplete_tab: Optional[str] = None):
         if from_:
@@ -43,24 +43,22 @@ class DropDown:
 
 
 class DatePicker:
-    def __init__(self, year, month, day):
+    def __init__(self):
         self.date_of_birth = browser.element('#dateOfBirthInput')
-        self.year = year
-        self.month = month
-        self.day = day
+
 
     def add_data(self, option: str):
         self.date_of_birth.perform(command.js.set_value(option)).press_tab()
 
-    def select_year(self):
+    def select_year(self, year):
         self.date_of_birth.click()
-        browser.element('.react-datepicker__year-select').element(f'[value="{self.year}"]').click()
+        browser.element('.react-datepicker__year-select').element(f'[value="{year}"]').click()
         return self
 
-    def select_month(self):
-        browser.element('.react-datepicker__month-select').element(f'[value="{self.month}"]').click()
+    def select_month(self, month):
+        browser.element('.react-datepicker__month-select').element(f'[value="{month}"]').click()
         return self
 
-    def select_day(self):
-        browser.element(f'.react-datepicker__day--00{self.day}').click()
+    def select_day(self, day):
+        browser.element(f'.react-datepicker__day--00{day}').click()
         return self
