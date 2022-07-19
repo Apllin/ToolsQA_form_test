@@ -9,7 +9,7 @@ class StudentRegistrationForm:
         self.last_name = browser.element("#lastName")
         self.user_email = browser.element("#userEmail")
         self.user_number = browser.element("#userNumber")
-        self.radiobutton = browser.element('[for="gender-radio-1"]')
+        self.gender = browser.element('#genterWrapper')
         self.subjects = TagsInput(browser.element('#subjectsInput'))
         self.submit_button = browser.element('#submit')
         self.hobbies_checkbox = browser.element('#hobbiesWrapper')
@@ -42,8 +42,8 @@ class StudentRegistrationForm:
         # perform(command.js.click)
         return self
 
-    def set_radiobutton(self):
-        self.radiobutton.click()
+    def set_gender(self, value: str):
+        self.gender.all('.custom-radio').element_by(have.exact_text(value)).click()
         return self
 
     def assert_subjects(self, *names):

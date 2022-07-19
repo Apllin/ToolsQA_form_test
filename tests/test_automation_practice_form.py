@@ -7,7 +7,7 @@ def test_fill_registration_form():
     browser.open("/automation-practice-form")
     remove_elements_on_page()
 
-    form.steps_fill_form.fill_form("John", "Doe", "johndoe@gmail.com", "1337228148", 'Hindi', 'English')
+    form.steps_fill_form.fill_form("John", "Doe", "johndoe@gmail.com", "1337228148", "Male", 'Hindi', 'English')
 
     (app.page_student_form
      .set_birthday(1998, 6, 3)
