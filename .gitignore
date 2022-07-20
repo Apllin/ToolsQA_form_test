@@ -32,3 +32,6 @@ venv*/
 
 #Allure
 tests/allure-results
+
+#Idea
+.idea
