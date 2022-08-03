@@ -1,5 +1,6 @@
+from selene.support.shared.jquery_style import s
 from helpers.controls import *
-from helpers.helper import get_abs_path
+from helpers.helper import recourse
 
 
 class StudentRegistrationForm:
@@ -50,9 +51,6 @@ class StudentRegistrationForm:
         self.subjects.should_have_texts(*names)
         return self
 
-    # def set_birthday(self):
-    #     DatePicker(1998, 6, 3).select_year().select_month().select_day()
-    #     return self
 
     def set_birthday(self, year, month, day):
         DatePicker().select_year(year).select_month(month).select_day(day)
@@ -62,8 +60,8 @@ class StudentRegistrationForm:
         self.hobbies_checkbox.all('.custom-checkbox').element_by(have.exact_text(value)).click()
         return self
 
-    def set_picture(self, name: str):
-        self.add_file.send_keys(get_abs_path(name))
+    def set_picture(self, file: str):
+        s('#uploadPicture').send_keys(recourse(file))
         return self
 
     def set_address(self, address: str):

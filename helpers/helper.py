@@ -1,12 +1,16 @@
+import os
 import os.path
-
+from pathlib import Path
 from selene.support.shared import browser
+import helpers
 
 
-def get_abs_path(path):
-    return str(
-        os.path.abspath(f'../source/{path}')
-    )
+def recourse(path):
+    file_path = str(Path(helpers.__file__)
+                    .parent
+                    .parent
+                    .joinpath(f'source/{path}'))
+    return os.path.abspath(file_path)
 
 
 def remove_elements_on_page():
