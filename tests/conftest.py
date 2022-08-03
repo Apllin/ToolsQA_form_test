@@ -37,7 +37,7 @@ def setup_browser(request):
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
-        "browserVersion": browser_version,
+        "browserVersion": DEFAULT_BROWSER_VERSION,
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True
