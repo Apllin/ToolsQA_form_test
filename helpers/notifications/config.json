@@ -1,15 +1,15 @@
 {
   "base": {
     "project": "some project",
-    "environment": "some env",
-    "comment": "some comment",
+    "environment": "STAGE",
+    "comment": "link to pull request",
     "reportLink": "",
     "language": "en",
     "allureFolder": "allure-report/",
     "enableChart": true
   },
   "telegram": {
-    "token": "5553335665:AAFLpk8dKjjTm_l2tRg8iBJqnJG-zPjoEl8",
+    "token": "xxx335665:AAFLpk8dKjjTm_l2tRg8iBJqnJG-zPjoEl8",
     "chat": "-1001625489405",
     "replyTo": ""
   }
